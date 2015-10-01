@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script type="text/javascript">
+			var x;
+			x=$(document);
+			x.ready(inicializar);
+
+			function inicializar(){			
+				$('input[data-role="boton1"]').on('click', function(){					
+					invertir($('div[data-role="p1"]').text());
+				});
+				
+				$('input[data-role="boton2"]').on('click', function(){
+					invertirPalabras($('div[data-role="p2"]').text());
+				});	
+				
+				$('input[data-role="boton3"]').on('click', function(){
+					invertirOrden($('div[data-role="p3"]').text());
+				});	
+            }
+			
+			function invertir(cadena){
+				var x = cadena.length;
+				var cadenaInvert = "";
+				while (x>=0) {
+					cadenaInvert = cadenaInvert + cadena.charAt(x);
+					x--;
+				}
+				$('div[data-role="p1"]').text(cadenaInvert);
+			}
+			
+			function invertirParaBoton2(cadena){
+				var x = cadena.length;
+				var cadenaInvert = "";
+				while (x>=0) {
+					cadenaInvert = cadenaInvert + cadena.charAt(x);
+					x--;
+				}
+				return cadenaInvert;
+			}
+			
+			function invertirPalabras(cadena){
+				var print = $('div[data-role="p2"]').text().split(" ");
+				var cadenaInvert = "";
+				for(var i= 0; i <= (print.length - 1); i++){
+					cadenaInvert += (invertirParaBoton2(print[i]) + " ");
+				}
+				$('div[data-role="p2"]').text(cadenaInvert);
+			}
+			
+			function invertirOrden(cadena){
+				var print = $('div[data-role="p3"]').text().split(" ");
+				var palabraInvert = "";
+				for(var i= (print.length - 1); i >= 0; i--){
+					palabraInvert += (print[i] + " ");
+				}
+				$('div[data-role="p3"]').text(palabraInvert);
+			}		
+		
+		</script>
+	</head>
+	<body>		
+		<input type="button" data-role="boton1" value="Invertir Cadena">
+		<input type="button" data-role="boton2" value="Invertir cada palabra">
+		<input type="button" data-role="boton3" value="Invertir el orden"><br><br>		
+			 <div data-role="p1">cadena</div><br>
+			 <div data-role="p2">cadena para invertir cada palabra</div><br>
+			 <div data-role="p3">cadena para invertir el orden</div>		
+	</body>
+
+</html>
